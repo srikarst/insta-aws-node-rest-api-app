@@ -1,0 +1,44 @@
+org: srikarst
+app: my-aws-node-rest-api-app
+service: my-aws-node-rest-api-app
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: "20201221"
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /{id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  reset:
+    handler: handler.reset
+    events:
+      - http:
+          path: /reset
+          method: get
+          cors: true
+  login:
+    handler: handler.login
+    events:
+      - http:
+          path: /login
+          method: get
+          cors: true
+  logout:
+    handler: handler.logout
+    events:
+      - http:
+          path: /logout
+          method: get
+          cors: true
